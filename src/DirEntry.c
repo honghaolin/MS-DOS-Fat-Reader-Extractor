@@ -18,23 +18,23 @@ int loadDirEntry(DirEntry* dirEntry, FILE* file, int address) {
     return 0;
 }
 
-int isEmpty(const DirEntry* dirEntry) {
+bool isEmpty(const DirEntry* dirEntry) {
     byte sign = dirEntry->name[0];
     if (sign == 0x00 || sign == 0x20) {
-        return 1;
+        return true;
     } else {
-        return 0;
+        return false;
     }
 }
 
-int isDeleted(const DirEntry* dirEntry) {
+bool isDeleted(const DirEntry* dirEntry) {
     /* the DEL command will replace the first byte of the name
        by 0xe5 to signify "deleted" */
     byte sign = dirEntry->name[0];
     if (sign == 0xE5 || sign == 0x05) {
-        return 1;
+        return true;
     } else {
-        return 0;
+        return false;
     }
 }
 
@@ -56,7 +56,7 @@ void getExtension(const DirEntry* dirEntry, char* extension) {
     extension[i+1] = '\0';
 }
 
-int isVolumeLabel(const DirEntry* dirEntry) {
+bool isVolumeLabel(const DirEntry* dirEntry) {
     return (dirEntry->attribute[0] & 0x08) == 0x08;
 }
 

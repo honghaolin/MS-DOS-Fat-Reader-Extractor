@@ -20,6 +20,7 @@
 #define _DIRENTRY_H_
 
 #include <stdio.h>
+#include <stdbool.h>
 #include "ByteType.h"
 
 struct DirEntry {
@@ -36,11 +37,11 @@ struct DirEntry {
 typedef struct DirEntry DirEntry;
 
 int loadDirEntry(DirEntry* dirEntry, FILE* file, int address);
-int isEmpty(const DirEntry* dirEntry);
-int isDeleted(const DirEntry* dirEntry);
+bool isEmpty(const DirEntry* dirEntry);
+bool isDeleted(const DirEntry* dirEntry);
 void getName(const DirEntry* dirEntry, char* name);
 void getExtension(const DirEntry* dirEntry, char* extension);
-int isVolumeLabel(const DirEntry* dirEntry);
+bool isVolumeLabel(const DirEntry* dirEntry);
 int getHour(const DirEntry* dirEntry);
 int getMinute(const DirEntry* dirEntry);
 int getYear(const DirEntry* dirEntry);
